@@ -4,6 +4,8 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import tech.cognitio.backend.server.entity.User
 import tech.cognitio.backend.server.repository.UserRepository
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 @Component
 class UserManager(
@@ -26,6 +28,7 @@ class UserManager(
         user.email = email
         user.slug = slug
         user.active = active
+        user.createdAt = LocalDateTime.now(ZoneId.of("UTC"))
 
         userRepository.saveAndFlush(user)
 

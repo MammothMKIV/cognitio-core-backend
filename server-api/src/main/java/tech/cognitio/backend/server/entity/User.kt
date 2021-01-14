@@ -11,7 +11,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "users")
-class User : UserDetails {
+class User : UserDetails, Auditable() {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0

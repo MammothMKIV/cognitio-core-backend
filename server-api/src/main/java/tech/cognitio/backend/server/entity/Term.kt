@@ -9,7 +9,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "terms")
-class Term {
+class Term : Auditable() {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0
