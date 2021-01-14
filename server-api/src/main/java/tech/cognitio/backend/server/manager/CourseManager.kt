@@ -1,5 +1,6 @@
 package tech.cognitio.backend.server.manager
 
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Component
 import tech.cognitio.backend.server.entity.Course
 import tech.cognitio.backend.server.entity.Term
@@ -10,7 +11,7 @@ import java.time.ZoneId
 
 @Component
 class CourseManager(
-    val courseRepository: CourseRepository
+    private val courseRepository: CourseRepository
 ) {
     fun createCourse(title: String, shortDescription: String, description: String, author: User, category: Term): Course {
         val course = Course()
@@ -26,5 +27,9 @@ class CourseManager(
         courseRepository.saveAndFlush(course)
 
         return course
+    }
+
+    fun getUserCourses(user: User, page: Int, perPage: Int): List<Course> {
+        return courseRepository.getUserCoursesWithPagination(user, PageRequest.of(page, perPage))
     }
 }

@@ -31,7 +31,7 @@ class SecurityConfig(
 ) : WebSecurityConfigurerAdapter() {
     private val PUBLIC_URLS: RequestMatcher = OrRequestMatcher(
         AntPathRequestMatcher("/user/register"),
-        AntPathRequestMatcher("/user/login")
+        AntPathRequestMatcher("/user/login"),
     )
     private val PROTECTED_URLS: RequestMatcher = NegatedRequestMatcher(PUBLIC_URLS)
 
