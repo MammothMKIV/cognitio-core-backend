@@ -25,7 +25,7 @@ class TokenAuthenticationProvider(
         return Optional
             .ofNullable(token)
             .map(Any::toString)
-            .flatMap(userAuthenticationService::findByToken)
-            .orElseThrow { UsernameNotFoundException("Cannot find user with authentication token=$token") }
+            .map(userAuthenticationService::findByToken)
+            .orElse(null) ?: throw UsernameNotFoundException("Cannot find user with authentication token=$token")
     }
 }
